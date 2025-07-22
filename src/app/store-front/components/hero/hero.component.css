@@ -1,0 +1,39 @@
+/* Fuente Staatliches */
+@font-face {
+  font-family: 'Staatliches';
+  src: url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+  font-display: swap;
+}
+
+.font-staatliches {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Transiciones */
+.transition-all {
+  transition-property: all;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+/* @media (max-width: 767px) {
+  .min-h-[75vh] {
+    min-height: 60vh;
+  }
+
+  section {
+    background-attachment: scroll !important;
+  }
+} */
+
+/* Efecto parallax para desktop */
+@media (min-width: 768px) {
+  section {
+    background-attachment: fixed;
+  }
+}
