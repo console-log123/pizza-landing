@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.font-staatliches {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 1.5px;
+}
+
+/* Efecto glassmorphism */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+/* Optimizacin para viles */
+@media (max-width: 768px) {
+  #special-offers {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Transiciones */
+.transition {
+  transition: all 0.3s ease;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:scale-\[1\.02\]:hover {
+  transform: scale(1.02);
+}

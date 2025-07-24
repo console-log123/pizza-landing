@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.font-staatliches {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 1px;
+}
+
+/* Transiciones */
+.transition {
+  transition: all 0.3s ease;
+}
+
+.hover\\:shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Moviles */
+@media (max-width: 640px) {
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .md\\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
