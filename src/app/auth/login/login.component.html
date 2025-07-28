@@ -1,0 +1,56 @@
+<div
+  class="absolute top-full right-0 mt-2 w-[300px] bg-white p-6 rounded-lg shadow-lg z-50 border border-black"
+  *ngIf="showLoginSignal()"
+>
+  <h2 class="text-xl font-bold text-center mb-4 text-black">Iniciar sesión</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label for="usuario" class="block text-sm font-semibold text-black">Usuario</label>
+      <input
+        id="usuario"
+        type="text"
+        formControlName="usuario"
+        class="w-full px-3 py-2 border border-black rounded-lg focus:outline-none focus:ring focus:ring-black focus:border-black text-black placeholder-gray-500"
+        placeholder="Ingresa tu usuario"
+      />
+    </div>
+
+    <div>
+      <label for="contrasena" class="block text-sm font-semibold text-black">Contraseña</label>
+      <input
+        id="contrasena"
+        type="password"
+        formControlName="contrasena"
+        class="w-full px-3 py-2 border border-black rounded-lg focus:outline-none focus:ring focus:ring-black focus:border-black text-black placeholder-gray-500"
+        placeholder="Ingresa tu contraseña"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition"
+    >
+      Iniciar sesión
+    </button>
+
+    <div class="text-center text-sm text-black">ó</div>
+
+    <button
+      type="button"
+      class="w-full flex items-center justify-center gap-2 border border-black py-2 rounded hover:bg-gray-100 text-black"
+    >
+      <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5" />
+      Acceder con Google
+    </button>
+
+    <p class="text-center text-sm text-black">
+      ¿No tienes cuenta?
+      <a href="#" class="text-black hover:underline font-semibold">Regístrate</a>
+    </p>
+
+    <div class="text-center mt-2">
+      <button type="button" (click)="close()" class="text-sm text-black hover:underline">Cerrar</button>
+    </div>
+  </form>
+</div>

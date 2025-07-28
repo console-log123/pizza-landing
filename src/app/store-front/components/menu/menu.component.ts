@@ -1,13 +1,14 @@
-import { Component, computed, Signal, signal } from "@angular/core";
+import { Component, computed, Signal, signal, ElementRef, Renderer2 } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { Pizza } from "./interfaces/product";
-
+import { CartService } from "../cart/services/cart.service";
+import { CartComponent } from "../cart/cart.component";
 
 
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',
-    imports: [RouterModule]
+    imports: [RouterModule, CartComponent]
 })
 export class MenuComponent {
 
@@ -75,9 +76,8 @@ export class MenuComponent {
     // Detectar cambios en el viewport
     isMobile = signal(false);
 
-    constructor() {
+    constructor(public cartService: CartService, private renderer: Renderer2, private el: ElementRef) {
         this.checkViewport();
-
         if (typeof window !== 'undefined') {
             window.addEventListener('resize', () => this.checkViewport());
         }
@@ -97,6 +97,44 @@ export class MenuComponent {
     // Formatear precio
     formatPrice(price: number): string {
         return `$${price.toLocaleString('es-CL')}`;
+    }
+
+    // Añadir al carrito
+    addToCart(pizza: Pizza) {
+        this.animateToCart(pizza);
+        this.cartService.addToCart(pizza);
+    }
+
+    animateToCart(pizza: any) {
+        const img = this.el.nativeElement.querySelector(`img[src='${pizza.image}']`);
+        const cartBtn = document.querySelector('.cart-icon, .cart-button, .fixed.bottom-6.right-6');
+
+        if (!img || !cartBtn) return;
+
+        const imgRect = img.getBoundingClientRect();
+        const cartRect = cartBtn.getBoundingClientRect();
+
+        const clone = img.cloneNode(true) as HTMLElement;
+        this.renderer.setStyle(clone, 'position', 'fixed');
+        this.renderer.setStyle(clone, 'top', `${imgRect.top}px`);
+        this.renderer.setStyle(clone, 'left', `${imgRect.left}px`);
+        this.renderer.setStyle(clone, 'width', `${imgRect.width}px`);
+        this.renderer.setStyle(clone, 'height', `${imgRect.height}px`);
+        this.renderer.setStyle(clone, 'z-index', '1000');
+        this.renderer.setStyle(clone, 'border-radius', '8px');
+        this.renderer.setStyle(clone, 'transition', 'all 0.8s ease-in-out');
+
+        document.body.appendChild(clone);
+
+        requestAnimationFrame(() => {
+            this.renderer.setStyle(clone, 'top', `${cartRect.top + 10}px`);
+            this.renderer.setStyle(clone, 'left', `${cartRect.left + 10}px`);
+            this.renderer.setStyle(clone, 'width', '30px');
+            this.renderer.setStyle(clone, 'height', '30px');
+            this.renderer.setStyle(clone, 'opacity', '0.5');
+        });
+
+        setTimeout(() => clone.remove(), 900);
     }
 }
 

@@ -1,4 +1,3 @@
-
 export interface Pizza {
     id: number;
     name: string;
@@ -6,4 +5,5 @@ export interface Pizza {
     price: number;
     image: string;
     category: 'classic' | 'specialty' | 'vegetarian';
+    quantity?: number;
 }
